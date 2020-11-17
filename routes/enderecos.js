@@ -1,3 +1,5 @@
+const rp = require('request-promise')
+const req = require('request')
 const bodyParser = require('body-parser')
 module.exports = app => {
 	const Enderecos = app.models.enderecos;
@@ -5,6 +7,20 @@ module.exports = app => {
 	app.get("/enderecos", (req, res) => {
 			Enderecos.findAll({},(retorno)=>
 							{res.json({enderecos: retorno})});
+	});
+
+  app.get('/enderecos/cep/:cep', (req, res) => {
+		var cep = req.params.cep;	
+		const getViaCep = {
+            uri: 'https://viacep.com.br/ws/'+cep+'/json/',
+            method: 'GET'            
+        }
+        
+		rp(getViaCep).then(function (parsedBody) {
+                res.send(parsedBody);
+            }).catch(function (err) { 
+                res.send("ERRO");
+            });
 	});
 
 // create application/json parser
