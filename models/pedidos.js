@@ -16,7 +16,7 @@ module.exports = app => {
                 idProduto: 3, preco: 8000, quantidade: 1
               },
             ],
-            frete: 500, total: 112000
+            frete: 500, total: 112500
           }
         ]
       )
