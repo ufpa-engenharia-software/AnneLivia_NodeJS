@@ -4,8 +4,7 @@ module.exports = app => {
 	app.use(bodyParser.urlencoded({ extended: true }));
 
 	app.get("/usuarios", (req, res) => {
-			Usuarios.findAll({},(retorno)=>
-							{res.json({usuarios: retorno})});
+			Usuarios.findAll({},(retorno)=>{res.json({usuarios: retorno})});
 	});
 
   // create application/json parser
